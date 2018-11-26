@@ -1,0 +1,25 @@
+h2 {
+    color:#808080;
+}
+
+.page-header {
+    background-color: #245580;
+    margin-top: 0;
+    padding: 6px 40px 10px 16px;
+}
+.page-header .home {
+    text-decoration: none;
+    padding-top: 5px;
+    padding-left: 10px;
+    color:#FFFFFF;
+    font-size: 30px;
+}
+.home:hover{
+    color:#808080;
+}
+
+#drafts, #create {
+    margin-top: 5px;
+    float: right;
+    margin-left: 3px;
+}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block head %}Detail{% endblock %}
+
+{% block content %}
+    <div class="col-sm-6 col-sm-offset-3">
+      {% if obj.image %}
+          {% if obj.user.get_full_name %}
+            <p>{% if user.is_authenticated %}<a href="{% url 'posts:update' id=obj.id %}" class="btn btn-primary btn-xs">Обновить пост</a>{%endif%}Author: {{ obj.user.get_full_name }} {% if user.is_authenticated %}<a href="{% url 'posts:delete' id=obj.id %}" class="btn btn-danger btn-xs">Удалить пост</a>{%endif%} </p>
+            <img src="{{ obj.image.url }}" alt="" class="img-resp">
+          {% else %}
+            <p>{% if user.is_authenticated %} <a href="{% url 'posts:update' id=obj.id %}" class="btn btn-primary btn-xs">Обновить пост</a>{%endif%} Author: {{ obj.user }} {% if user.is_authenticated %}<a href="{% url 'posts:delete' id=obj.id %}" class="btn btn-danger btn-xs">Удалить пост</a>{%endif%} </p>
+            <img src="{{ obj.image.url }}" alt="" class="img-resp">
+          {% endif %}
+          <h2>{{ obj.title }} <small>{{ obj.publish }}</small> </h2>
+          {{ obj.content|linebreaks }}<br>
+      {% else %}
+          {% if obj.user.get_full_name %}
+            <p>{% if user.is_authenticated %}<a href="{% url 'posts:update' id=obj.id %}" class="btn btn-primary btn-xs">Обновить пост</a>{%endif%}Author: {{ obj.user.get_full_name }} {% if user.is_authenticated %}<a href="{% url 'posts:delete' id=obj.id %}" class="btn btn-danger btn-xs">Удалить пост</a>{%endif%} </p>
+          {% else %}
+            <p>{% if user.is_authenticated %}<a href="{% url 'posts:update' id=obj.id %}" class="btn btn-primary btn-xs">Обновить пост</a>{%endif%}Author: {{ obj.user }} {% if user.is_authenticated %}<a href="{% url 'posts:delete' id=obj.id %}" class="btn btn-danger btn-xs">Удалить пост</a>{%endif%} </p>
+          {% endif %}
+          <h2>{{ obj.title }} <small>{{ obj.publish }}</small> </h2>
+          {{ obj.content|linebreaks }}<br>
+      {% endif %}
+
+      <p><div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div></p>
+
+      <div class="row">
+        <p><div class="fb-comments" data-href="{{request.build_absolute_uri}}" data-numposts="5"></div></p>
+      </div>
+
+    </div>
+
+{% endblock %}
